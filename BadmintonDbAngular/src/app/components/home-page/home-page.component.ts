@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from 'src/app/services/user-data.service';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -8,20 +9,24 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class HomePageComponent implements OnInit {
 
-  daka;
-  id: number = 2;
+  playerIdFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+  playerInfo = null; //TODO create player Object Model
+
 
   constructor(private userDataService: UserDataService) { }
 
-  ngOnInit(): void {
-    this.getPlayerInfo();
-  }
+  ngOnInit(): void {}
 
-  getPlayerInfo() {
-    this.userDataService.getPlayerStats(this.id).subscribe( result => {
-      console.log(result);
-      this.daka = result;
-    });
+  searchPlayerId() {
+    if(!this.playerIdFormControl.hasError('minlength') && !this.playerIdFormControl.hasError('required')) {
+      this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
+        console.log(result);
+        this.playerInfo = result.body;
+      });
+    }
   }
 
 }

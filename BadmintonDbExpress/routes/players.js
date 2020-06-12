@@ -7,11 +7,11 @@ players.get('/', function(req, res, next) {
 })
 
 players.get('/:id', function(req, res, next) {
-    res.status(200).json('got ' + req.params.id);
+    res.status(200).json({'body': req.params.id});
 })
 
 players.post('/:id', function(req, res, next) {
-    res.status(201).json('post ' + req.params.id);
+    res.status(201).json({'post': req.params.id});
 })
 
 module.exports.players = players;
