@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class UserDataService {
 
-  backendURL: String = 'http://localhost:3000/'
+  // backendURL: String = 'http://localhost:3000/';
+  backendURL: String = 'http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:3000/';
 
   constructor(private http: HttpClient) { }
 
