@@ -2,10 +2,10 @@
 if (process.env.NODE_ENV !== 'test') require ('dotenv').config()
 module.exports = {
 
-  development: {
-    client: 'pg',
-    connection: `${process.env.DEV_DATABASE_URL}/${process.env.DEV_DATABASE_NAME}`
-  },
+  // development: {
+  //   client: 'pg',
+  //   connection: `${process.env.DEV_DATABASE_URL}/${process.env.DEV_DATABASE_NAME}`
+  // },
 
   prod: {
     client: 'pg',
