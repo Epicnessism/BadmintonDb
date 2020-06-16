@@ -1,4 +1,5 @@
 const express = require('express');
+const knex = require('../db');
 
 var players = express.Router();
 
