@@ -9,7 +9,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: `postgres://${process.env.PROD_DATABASE_URL}/${process.env.PROD_DATABASE_NAME}`
+    connection: `${process.env.PROD_DATABASE_URL}/${process.env.PROD_DATABASE_NAME}`
   },
 
   staging: {
