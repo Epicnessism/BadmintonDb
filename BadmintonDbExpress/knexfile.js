@@ -9,15 +9,20 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: `${process.env.PROD_DATABASE_URL}/${process.env.PROD_DATABASE_NAME}`
+    connection: {
+      host:`${process.env.PROD_DATABASE_URL}/${process.env.PROD_DATABASE_NAME}`,
+      user: 'postgres',
+      password: 'Test1234',
+      database: 'bst_db'
+    }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: 'bst_db',
+      user:     'postgres',
+      password: 'Test1234'
     },
     pool: {
       min: 2,
@@ -31,9 +36,9 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: 'bst_db',
+      user:     'postgres',
+      password: 'Test1234'
     },
     pool: {
       min: 2,
