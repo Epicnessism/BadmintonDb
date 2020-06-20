@@ -1,0 +1,29 @@
+<mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+    <p><button mat-button >Toggle</button></p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.open()" aria-hidden="false" aria-label="Sidenav Icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Badminton Stat Tracker</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button aria-hidden="false" aria-label="Settings Icon">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button color="" aria-hidden="false" aria-label="My Profile Page Button">
+          <mat-icon>perm_identity</mat-icon>
+        </button>
+        <button mat-icon-button aria-hidden="false" aria-label="Settings Icon">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
