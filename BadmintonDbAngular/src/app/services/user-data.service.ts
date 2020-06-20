@@ -16,6 +16,6 @@ export class UserDataService {
   getPlayerStats(id): Observable<any> {
     console.log(this.backendURL + `players/${id}`);
     return this.http.get<any>(this.backendURL + `players/${id}`);
-  }
+  } //TODO resulve playerID vs playerName
 
 }

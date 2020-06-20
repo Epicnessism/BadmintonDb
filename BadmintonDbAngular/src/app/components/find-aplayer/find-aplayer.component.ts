@@ -11,8 +11,14 @@ export class FindAPlayerComponent implements OnInit {
 
   playerIdFormControl = new FormControl('', [
     Validators.required,
+    Validators.minLength(6), //TODO not used atm...bring back when implementing playerID
+  ]);
+
+  playerNameFormControl = new FormControl('', [
+    Validators.required,
     Validators.minLength(6),
   ]);
+
   playerInfo = null; //TODO create player Object Model
 
   constructor(private userDataService: UserDataService) { }
@@ -30,8 +36,8 @@ export class FindAPlayerComponent implements OnInit {
   }
 
   searchPlayerName() {
-    if(!this.playerIdFormControl.hasError('minlength') && !this.playerIdFormControl.hasError('required')) {
-      this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
+    if(!this.playerNameFormControl.hasError('minlength') && !this.playerNameFormControl.hasError('required')) {
+      this.userDataService.getPlayerStats(this.playerNameFormControl.value).subscribe( result => {
         console.log(result);
         this.playerInfo = result;
       });
