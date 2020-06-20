@@ -14,7 +14,11 @@ players.get('/:id', function(req, res, next) {
         .where({player_id: req.params.id})
         .then( result => {
             console.log(result);
-            res.status(200).json({'body': result});
+            if(result.length > 1) {
+                res.status(400).json({message: "more than 1 found..."})
+            } else {
+                res.status(200).json(result[0]);
+            }
         })
 })
 

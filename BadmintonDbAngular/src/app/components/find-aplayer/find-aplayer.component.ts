@@ -24,7 +24,7 @@ export class FindAPlayerComponent implements OnInit {
     if(!this.playerIdFormControl.hasError('minlength') && !this.playerIdFormControl.hasError('required')) {
       this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
         console.log(result);
-        this.playerInfo = result.body;
+        this.playerInfo = result;
       });
     }
   }
