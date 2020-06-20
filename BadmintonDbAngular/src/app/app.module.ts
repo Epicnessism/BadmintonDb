@@ -17,14 +17,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { FindAPlayerComponent } from './components/find-aplayer/find-aplayer.component';
+import { MatRippleModule } from '@angular/material/core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    FindAPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {MatListModule} from '@angular/material/list';
     MatTabsModule,
     MatSidenavModule,
     MatListModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

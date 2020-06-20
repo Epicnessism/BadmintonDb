@@ -6,39 +6,7 @@
     <mat-card-content>
       <mat-tab-group color="accent" backgroundColor="primary">
         <mat-tab label="Find a player">
-          <mat-form-field appearance="outline" class="find-user-form">
-            <mat-label>PlayerID</mat-label>
-            <input matInput [formControl]="playerIdFormControl" placeholder="Ex. ABC123"
-              (keydown.enter)="searchPlayerId()">
-            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-            <mat-error
-              *ngIf="playerIdFormControl.hasError('minlength') && !playerIdFormControl.hasError('required')">
-              PlayerID must be greater than 6 characters
-            </mat-error>
-            <mat-error *ngIf="playerIdFormControl.hasError('required')">
-              PlayerID is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-card class="player-info-card" *ngIf="playerInfo != null">
-            <mat-card-header>
-              <div mat-card-avatar class="header-image"></div>
-              <mat-card-title></mat-card-title>
-              <mat-card-subtitle>{{playerInfo}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
+
         </mat-tab>
         <mat-tab label="Input a game">
 
@@ -49,8 +17,4 @@
       </mat-tab-group>
     </mat-card-content>
   </mat-card>
-
-
-
-
 </div>

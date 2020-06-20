@@ -9,24 +9,10 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class HomePageComponent implements OnInit {
 
-  playerIdFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6),
-  ]);
-  playerInfo = null; //TODO create player Object Model
-
-
-  constructor(private userDataService: UserDataService) { }
+  constructor() { }
 
   ngOnInit(): void {}
 
-  searchPlayerId() {
-    if(!this.playerIdFormControl.hasError('minlength') && !this.playerIdFormControl.hasError('required')) {
-      this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
-        console.log(result);
-        this.playerInfo = result.body;
-      });
-    }
-  }
+
 
 }
