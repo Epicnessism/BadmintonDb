@@ -21,6 +21,15 @@ export class FindAPlayerComponent implements OnInit {
   }
 
   searchPlayerId() {
+    if(!this.playerIdFormControl.hasError('required')) {
+      this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
+        console.log(result);
+        this.playerInfo = result;
+      });
+    }
+  }
+
+  searchPlayerName() {
     if(!this.playerIdFormControl.hasError('minlength') && !this.playerIdFormControl.hasError('required')) {
       this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe( result => {
         console.log(result);

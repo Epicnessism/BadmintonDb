@@ -11,7 +11,7 @@ players.get('/autoComplete', )
 
 players.get('/:id', function(req, res, next) {
     knex('players')
-        .where({player_id: req.params.id})
+        .where({id: req.params.id})
         .then( result => {
             console.log(result);
             if(result.length > 1) {
