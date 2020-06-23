@@ -33,7 +33,7 @@ export class NavbarComponent {
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
-  sideNavOptions = [{name:"Find a player", path: "findAPlayer"}, "input a game"]
+  sideNavOptions = [{name:"Find a player", path: "findAPlayer"}, {name:"Add a game", path: "addAGame"}]
 
 
 }

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FindAPlayerComponent } from './find-aplayer.component';
+import { FindAPlayerComponent } from './find-a-player.component';
 
 describe('FindAPlayerComponent', () => {
   let component: FindAPlayerComponent;

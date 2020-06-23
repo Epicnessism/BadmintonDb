@@ -3,9 +3,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
-  selector: 'app-find-aplayer',
-  templateUrl: './find-aplayer.component.html',
-  styleUrls: ['./find-aplayer.component.sass']
+  selector: 'app-find-a-player',
+  templateUrl: './find-a-player.component.html',
+  styleUrls: ['./find-a-player.component.sass']
 })
 export class FindAPlayerComponent implements OnInit {
 

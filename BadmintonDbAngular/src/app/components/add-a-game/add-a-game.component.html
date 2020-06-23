@@ -1,0 +1,136 @@
+<div class="main-field">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Add a game</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-vertical-stepper linear="true" #stepper>
+        <mat-step [stepControl]="secondFormGroup" [(completed)]="completed1">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Select a game type</ng-template>
+
+            <mat-radio-group name="selectGameType" aria-labelledby="example-radio-group-label" class="example-radio-group"
+            formControlName="gameType">
+              <mat-radio-button class="example-radio-button" *ngFor="let type of gameTypes" [value]="type" (click)="setCompleted1(type)">
+                {{type}}
+              </mat-radio-button>
+            </mat-radio-group>
+
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step [stepControl]="secondFormGroup" [completed]="completed2">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Select players by playerID</ng-template>
+
+            <div *ngIf="gameType==='Singles' else doubles">
+              <mat-form-field>
+                <mat-label>Player 1</mat-label>
+                <input matInput formControlName="player_1A" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 2</mat-label>
+                <input matInput formControlName="player_2A" placeholder="" required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Player 1 Points</mat-label>
+                <input matInput formControlName="points_A" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 2 Points</mat-label>
+                <input matInput formControlName="points_B" placeholder="" required>
+              </mat-form-field>
+
+              <mat-radio-group aria-label="Is this a new set">
+                <mat-label>Is this a new set?</mat-label>
+                <mat-radio-button value="Yes" (click)="newSet()">Yes</mat-radio-button>
+                <mat-radio-button value="No" (click)="oldSet()">No, this is an existing set</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <ng-template #doubles>
+              <mat-form-field>
+                <mat-label>Player 1A</mat-label>
+                <input matInput formControlName="player_1A" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 1B</mat-label>
+                <input matInput formControlName="player_1B" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 2A</mat-label>
+                <input matInput formControlName="player_2A" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 2B</mat-label>
+                <input matInput formControlName="player_2B" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 1A and 1B Points</mat-label>
+                <input matInput formControlName="points_A" placeholder="" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Player 2A and 2B Points</mat-label>
+                <input matInput formControlName="points_B" placeholder="" required>
+              </mat-form-field>
+
+              <mat-radio-group aria-label="Is this a new set">
+                <mat-label>Is this a new set?</mat-label>
+                <mat-radio-button value="Yes" (click)="newSet()">Yes</mat-radio-button>
+                <mat-radio-button value="No" (click)="oldSet()">No, this is an existing set</mat-radio-button>
+              </mat-radio-group>
+            </ng-template>
+
+            <div>
+              <button type="button" mat-button matStepperPrevious>Back</button>
+              <button type="button" mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step>
+          <ng-template matStepLabel>Find Existing Set</ng-template>
+          <p>Find Existing Set mat-card-header.</p>
+          <div>
+            <button type="button" mat-button matStepperPrevious>Back</button>
+            <button type="button" mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+
+        <mat-step [completed]="completed4" [state]="state">
+          <ng-template matStepLabel>Submitted</ng-template>
+          <div>
+            <!-- <button mat-button matStepperPrevious>Back</button> -->
+            <button mat-button (click)="done()">Submit</button>
+          </div>
+        </mat-step>
+
+
+      </mat-vertical-stepper>
+
+
+
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -18,8 +18,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { FindAPlayerComponent } from './components/find-aplayer/find-aplayer.component';
+import { FindAPlayerComponent } from './components/find-a-player/find-a-player.component';
 import { MatRippleModule } from '@angular/material/core';
+import { AddAGameComponent } from './components/add-a-game/add-a-game.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { MatRippleModule } from '@angular/material/core';
     AppComponent,
     HomePageComponent,
     NavbarComponent,
-    FindAPlayerComponent
+    FindAPlayerComponent,
+    AddAGameComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatSidenavModule,
     MatListModule,
     MatRippleModule,
+    MatStepperModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
