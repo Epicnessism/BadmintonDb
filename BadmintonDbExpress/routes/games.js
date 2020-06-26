@@ -38,7 +38,7 @@ games.post('/', function (req, res, next) {
                     points_2: req.body.points_2
                 }, "*")
                 .then(result => {
-                    console.log(result);
+                    console.log("result after insert: ",result);
                     if (result.length > 1) {
                         res.status(400).json({ message: "more than 1 found..." })
                     } else {
@@ -52,8 +52,6 @@ games.post('/', function (req, res, next) {
     } else {
 
     }
-
-    res.status(201).json({ 'post': req.params.id });
 })
 
 module.exports.games = games;
