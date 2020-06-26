@@ -18,6 +18,7 @@ app.get('/', function(req,res,next) {
 })
 
 app.use('/players', require('./routes/players').players);
+app.use('/games', require('./routes/games').games);
 
 app.use(function(err, req, res, next) {
     res.locals.message = err.message;

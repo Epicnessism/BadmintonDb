@@ -11,9 +11,10 @@
           <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Select a game type</ng-template>
 
-            <mat-radio-group name="selectGameType" aria-labelledby="example-radio-group-label" class="example-radio-group"
-            formControlName="gameType">
-              <mat-radio-button class="example-radio-button" *ngFor="let type of gameTypes" [value]="type" (click)="setCompleted1(type)">
+            <mat-radio-group name="selectGameType" aria-labelledby="example-radio-group-label"
+              class="example-radio-group" formControlName="gameType">
+              <mat-radio-button class="example-radio-button" *ngFor="let type of gameTypes" [value]="type"
+                (click)="setCompleted1(type)">
                 {{type}}
               </mat-radio-button>
             </mat-radio-group>
@@ -41,12 +42,12 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Player 1 Points</mat-label>
-                <input matInput formControlName="points_A" placeholder="" required>
+                <input matInput type="number" formControlName="points_A" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 2 Points</mat-label>
-                <input matInput formControlName="points_B" placeholder="" required>
+                <input matInput type="number" formControlName="points_B" placeholder="" required>
               </mat-form-field>
 
               <mat-radio-group aria-label="Is this a new set">
@@ -79,12 +80,12 @@
 
               <mat-form-field>
                 <mat-label>Player 1A and 1B Points</mat-label>
-                <input matInput formControlName="points_A" placeholder="" required>
+                <input matInput type="number" formControlName="points_A" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 2A and 2B Points</mat-label>
-                <input matInput formControlName="points_B" placeholder="" required>
+                <input matInput type="number" formControlName="points_B" placeholder="" required>
               </mat-form-field>
 
               <mat-radio-group aria-label="Is this a new set">
@@ -102,13 +103,21 @@
         </mat-step>
 
 
-        <mat-step>
-          <ng-template matStepLabel>Find Existing Set</ng-template>
-          <p>Find Existing Set mat-card-header.</p>
-          <div>
-            <button type="button" mat-button matStepperPrevious>Back</button>
-            <button type="button" mat-button matStepperNext>Next</button>
-          </div>
+        <mat-step [formGroup]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Find Existing Set</ng-template>
+            <!-- do call to db for all existing sets -->
+            <mat-form-field>
+              <mat-label>Set ID</mat-label>
+              <input matInput type="number" formControlName="set_id" placeholder="set ID">
+            </mat-form-field>
+
+            <div>
+              <button type="button" mat-button matStepperPrevious>Back</button>
+              <button type="button" mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+
         </mat-step>
 
 

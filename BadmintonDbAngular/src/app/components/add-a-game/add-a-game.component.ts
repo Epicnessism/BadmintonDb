@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { GamesDataService } from 'src/app/services/games-data.service';
 
 @Component({
   selector: 'app-add-a-game',
@@ -21,7 +22,10 @@ export class AddAGameComponent implements OnInit {
   state: string;
 
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private gamesDataService: GamesDataService,
+  ) { }
 
   ngOnInit(): void {
     this.secondFormGroup = this._formBuilder.group({
@@ -30,15 +34,10 @@ export class AddAGameComponent implements OnInit {
       player_1B: ['', Validators.required],
       player_2A: ['', Validators.required],
       player_2B: ['', Validators.required],
-      points_A: ['', Validators.required],
-      points_B: ['', Validators.required],
-      set_id: ['', Validators.required],
+      points_A: [undefined || '', Validators.required],
+      points_B: [undefined || '', Validators.required],
+      set_id: [undefined || '', Validators.required],
     });
-  }
-
-  isWork(): void {
-    console.log(this.secondFormGroup.value);
-
   }
 
   setCompleted1(e): void {
@@ -53,8 +52,9 @@ export class AddAGameComponent implements OnInit {
   }
 
   newSet(): void {
-    console.log(this.completed1, "completed1");
-
+    this.secondFormGroup.patchValue({
+      set_id: null
+    });
     this.stepper.selected.completed = true;
     this.completed2 = true;
     this.nextStep();
@@ -68,10 +68,20 @@ export class AddAGameComponent implements OnInit {
   }
 
   done() { //? not sure how much we need this. placeholder for now.
-    this.stepper.selected.completed = true;
-    this.completed4 = true;
-    this.state = 'done';
-    console.log(this.secondFormGroup.valid);
+    if (this.secondFormGroup.controls['set_id'].value != null && isNaN(this.secondFormGroup.controls['set_id'].value)) {
+      console.log("some error happened here");
+    } else {
+      console.log(this.secondFormGroup.value);
+      this.stepper.selected.completed = true;
+      this.completed4 = true;
+      this.state = 'done';
+      this.gamesDataService.insertGame(this.secondFormGroup).subscribe( result => {
+        console.log(result);
+        console.log("successful return from game insertion");
+      })
+      // console.log(this.secondFormGroup.valid); //? what does this do again
+    }
+
   }
 
 }
