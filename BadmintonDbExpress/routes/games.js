@@ -24,15 +24,17 @@ games.get('/:id', function (req, res, next) {
 //insert a new game
 games.post('/', function (req, res, next) {
     console.log(req.body);
-    console.log("1A: ",req.body.player_1A);
+    console.log("2A:",req.body.player_2A);
+    console.log(req.body.player_2A == "");
+    
     
     if (req.body.new_set != "null") { //existing game
         knex('games')
             .insert({
                 player_id_1A: req.body.player_1A,
-                player_id_2A: req.body.player_2A != '' ? req.body.player_2A : null,
+                player_id_2A: req.body.player_2A != "" ? req.body.player_2A : null,
                 player_id_1B: req.body.player_1B,
-                player_id_2B: req.body.player_2B != '' ? req.body.player_2B : null,
+                player_id_2B: req.body.player_2B != "" ? req.body.player_2B : null,
                 set_id: req.body.set_id,
                 points_A: req.body.points_A,
                 points_B: req.body.points_B
