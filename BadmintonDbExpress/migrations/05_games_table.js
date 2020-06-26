@@ -2,8 +2,8 @@ exports.up = function(knex) {
     return knex.schema.createTable('games', table => {
         table.increments('game_id');
         table.integer('player_id_1A').notNullable();
-        table.integer('player_id_2A').defaultTo(null);
-        table.integer('player_id_1B').notNullable();
+        table.integer('player_id_1B').defaultTo(null);
+        table.integer('player_id_2A').notNullable();
         table.integer('player_id_2B').defaultTo(null);
         table.integer('set_id').notNullable();
         table.integer('tournament_id').defaultTo(null);
@@ -15,8 +15,8 @@ exports.up = function(knex) {
 
         table.foreign('tournament_id').references('tournament_id').inTable('tournaments');
 
-        table.integer('points_A').notNullable();
-        table.integer('points_B').notNullable();
+        table.integer('points_1').notNullable();
+        table.integer('points_2').notNullable();
 
     })
   };
