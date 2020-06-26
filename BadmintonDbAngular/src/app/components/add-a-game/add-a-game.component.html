@@ -33,12 +33,12 @@
             <div *ngIf="gameType==='Singles' else doubles">
               <mat-form-field>
                 <mat-label>Player 1</mat-label>
-                <input matInput formControlName="player_1A" placeholder="" required>
+                <input matInput type="number" formControlName="player_1A" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 2</mat-label>
-                <input matInput formControlName="player_2A" placeholder="" required>
+                <input matInput type="number" formControlName="player_2A" placeholder="" required>
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Player 1 Points</mat-label>
@@ -60,22 +60,22 @@
             <ng-template #doubles>
               <mat-form-field>
                 <mat-label>Player 1A</mat-label>
-                <input matInput formControlName="player_1A" placeholder="" required>
+                <input matInput type="number" formControlName="player_1A" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 1B</mat-label>
-                <input matInput formControlName="player_1B" placeholder="" required>
+                <input matInput type="number" formControlName="player_1B" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 2A</mat-label>
-                <input matInput formControlName="player_2A" placeholder="" required>
+                <input matInput type="number" formControlName="player_2A" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Player 2B</mat-label>
-                <input matInput formControlName="player_2B" placeholder="" required>
+                <input matInput type="number" formControlName="player_2B" placeholder="" required>
               </mat-form-field>
 
               <mat-form-field>

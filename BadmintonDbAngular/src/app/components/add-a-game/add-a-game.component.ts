@@ -30,10 +30,10 @@ export class AddAGameComponent implements OnInit {
   ngOnInit(): void {
     this.secondFormGroup = this._formBuilder.group({
       gameType: ['', Validators.required],
-      player_1A: ['', Validators.required],
-      player_1B: ['', Validators.required],
-      player_2A: ['', Validators.required],
-      player_2B: ['', Validators.required],
+      player_1A: [undefined || '', Validators.required],
+      player_1B: [undefined || '', Validators.required],
+      player_2A: [undefined || '', Validators.required],
+      player_2B: [undefined || '', Validators.required],
       points_A: [undefined || '', Validators.required],
       points_B: [undefined || '', Validators.required],
       set_id: [undefined || '', Validators.required],
