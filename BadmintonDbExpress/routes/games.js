@@ -28,9 +28,9 @@ games.post('/', function (req, res, next) {
         knex('games')
             .insert({
                 player_id_1A: req.body.player_id_1A,
+                player_id_1B: req.body.player_id_1B != '' ? req.body.player_id_1B : null,
                 player_id_2A: req.body.player_id_2A,
-                player_id_1B: req.body.player_id_1B,
-                player_id_2B: req.body.player_id_2B,
+                player_id_2B: req.body.player_id_2B != '' ? req.body.player_id_2B : null,
                 set_id: req.body.set_id,
                 points_A: req.body.points_A,
                 points_B: req.body.points_B

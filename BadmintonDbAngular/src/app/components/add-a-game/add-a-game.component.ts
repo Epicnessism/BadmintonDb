@@ -71,16 +71,17 @@ export class AddAGameComponent implements OnInit {
     if (this.secondFormGroup.controls['set_id'].value != null && isNaN(this.secondFormGroup.controls['set_id'].value)) {
       console.log("some error happened here");
     } else {
-      console.log(this.secondFormGroup.value);
-      this.stepper.selected.completed = true;
-      this.completed4 = true;
-      this.state = 'done';
-      this.gamesDataService.insertGame(this.secondFormGroup).subscribe( result => {
-        console.log(result);
-        console.log("successful return from game insertion");
-      })
+
       // console.log(this.secondFormGroup.valid); //? what does this do again
     }
+    console.log(this.secondFormGroup.value);
+    this.stepper.selected.completed = true;
+    this.completed4 = true;
+    this.state = 'done';
+    this.gamesDataService.insertGame(this.secondFormGroup.value).subscribe(result => {
+      console.log(result);
+      console.log("successful return from game insertion");
+    })
 
   }
 
