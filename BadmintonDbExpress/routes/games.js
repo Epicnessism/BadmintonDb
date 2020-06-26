@@ -23,6 +23,8 @@ games.get('/:id', function (req, res, next) {
 
 //insert a new game
 games.post('/', function (req, res, next) {
+    console.log(req.body);
+    
     if (req.body.gameType == "Singles") {
         if (req.body.new_set != "null") { //existing game
             knex('games')
