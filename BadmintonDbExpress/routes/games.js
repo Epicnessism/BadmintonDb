@@ -24,6 +24,8 @@ games.get('/:id', function (req, res, next) {
 //insert a new game
 games.post('/', function (req, res, next) {
     console.log(req.body);
+    console.log("1A: ",req.body.player_id_1A);
+    
     if (req.body.new_set != "null") { //existing game
         knex('games')
             .insert({
