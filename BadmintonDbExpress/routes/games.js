@@ -36,7 +36,7 @@ games.post('/', function (req, res, next) {
                     set_id: req.body.set_id,
                     points_1: req.body.points_1,
                     points_2: req.body.points_2
-                })
+                }, "*")
                 .then(result => {
                     console.log(result);
                     if (result.length > 1) {
