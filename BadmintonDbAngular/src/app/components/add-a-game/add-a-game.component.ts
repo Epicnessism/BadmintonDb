@@ -34,8 +34,8 @@ export class AddAGameComponent implements OnInit {
       player_2A: [undefined || '', Validators.required],
       player_1B: [undefined || '', Validators.required],
       player_2B: [undefined || '', Validators.required],
-      points_A: [undefined || '', Validators.required],
-      points_B: [undefined || '', Validators.required],
+      points_1: [undefined || '', Validators.required],
+      points_2: [undefined || '', Validators.required],
       set_id: [undefined || '', Validators.required],
     });
   }

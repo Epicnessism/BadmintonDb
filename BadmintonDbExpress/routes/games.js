@@ -32,8 +32,8 @@ games.post('/', function (req, res, next) {
                     player_id_2A: req.body.player_2A,
                     player_id_2B: req.body.player_2B != "" ? req.body.player_2B : null,
                     set_id: req.body.set_id,
-                    points_A: req.body.points_A,
-                    points_B: req.body.points_B
+                    points_1: req.body.points_1,
+                    points_2: req.body.points_2
                 })
                 .then(result => {
                     console.log(result);
@@ -48,7 +48,7 @@ games.post('/', function (req, res, next) {
 
         }
     } else {
-        
+
     }
 
     res.status(201).json({ 'post': req.params.id });
