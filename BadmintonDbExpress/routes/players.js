@@ -1,7 +1,7 @@
 const express = require('express');
 const knex = require('../db');
-
-var players = express.Router();
+const authHelpers = require('../auth/_helpers');
+const players = express.Router();
 
 players.get('/', function(req, res, next) {
     res.status(200).json("Okay Connected");
@@ -9,7 +9,7 @@ players.get('/', function(req, res, next) {
 
 players.get('/autoComplete', )
 
-players.get('/:id', function(req, res, next) {
+players.get('/:id', authHelpers.loginRequired , function(req, res, next) {
     knex('players')
         .where({id: req.params.id})
         .then( result => {
@@ -22,7 +22,7 @@ players.get('/:id', function(req, res, next) {
         })
 })
 
-players.post('/:id', function(req, res, next) {
+players.post('/:id', authHelpers.loginRequired , function(req, res, next) {
     res.status(201).json({'post': req.params.id});
 })
 

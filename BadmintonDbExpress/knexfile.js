@@ -1,7 +1,7 @@
 // Update with your config settings.
 if (process.env.NODE_ENV !== "test") require("dotenv").config();
 module.exports = {
-  // use this for local testing
+  // // use this for local testing
   // development: {
   //   client: "pg",
   //   connection: {

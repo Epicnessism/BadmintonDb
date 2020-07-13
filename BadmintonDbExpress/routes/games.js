@@ -1,14 +1,14 @@
 const express = require('express');
 const knex = require('../db');
-
-var games = express.Router();
+const games = express.Router();
+const authHelpers = require('../auth/_helpers');
 
 games.get('/', function (req, res, next) {
     res.status(200).json("Okay Connected");
 })
 
 //get game by game_id
-games.get('/:id', function (req, res, next) {
+games.get('/:id', authHelpers.loginRequired, function (req, res, next) {
     knex('players')
         .where({ id: req.params.id })
         .then(result => {
@@ -22,7 +22,7 @@ games.get('/:id', function (req, res, next) {
 })
 
 //insert a new game
-games.post('/', function (req, res, next) {
+games.post('/', authHelpers.loginRequired , function (req, res, next) {
     console.log(req.body);
 
     if (req.body.new_set == null) {//new game, find new set_id
