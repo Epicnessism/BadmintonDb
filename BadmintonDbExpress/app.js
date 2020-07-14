@@ -4,7 +4,6 @@ var express = require('express');
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
-var bcrpyt = require('bcrypt');
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -30,41 +29,15 @@ app.use(cors({
 }));
 app.options('*', cors());
 
-
-//! passport stuff here with local
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({username: username}, function(err, user) {
-            if (err) { return done(err);}
-            if (!user) {
-                return done(null, false, { message: 'Incorrect Username.'})
-            }
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: 'Invalid password.'})
-            }
-            return done(null, user)
-        })
-    }
-))
-
-// var pg = require('pg') , session = require('express-session')
-
-// var pgPool = new pg.Pool({
-//     database: 'bst_db',
-//     user: 'postgres',
-//     password: 'Test1234',
-//     port: 5432,
-// })
-
 //! more passport stuff
 app.use( session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUnintialized: false,
-    // cookie: {
-    //     expires: 10800000, //3 hours
-    //     httpOnly: false
-    // }
+    cookie: {
+        expires: 10800000, //3 hours
+        httpOnly: false
+    }
 }));
 
 app.use(passport.initialize());

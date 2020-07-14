@@ -1,0 +1,27 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <mat-card-title>
+      <div>
+        Please Login
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="main-field" [formGroup]="loginFormGroup">
+      <div>
+        <mat-form-field class="form-fields">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" placeholder="" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="form-fields">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="" required>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>

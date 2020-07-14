@@ -57,7 +57,11 @@ auth.post('/login', (req, res, next) => {
 auth.get('/logout', authHelpers.loginRequired ,(req, res, next) => {
     req.logout();
     handleResponse(res, 200, 'logged out');
-})
+});
+
+auth.get('/authenticate', authHelpers.loginRequired, (req, res, next) => {
+    handleResponse(res, 200, 'authenticated');
+});
 
 
 function handleResponse(res, code, statusMsg) {

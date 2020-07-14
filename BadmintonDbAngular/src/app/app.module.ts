@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { authInterceptor } from './interceptors/authInterceptor';
 
 //* Angular Material Imports
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +26,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { AddAGameComponent } from './components/add-a-game/add-a-game.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -31,7 +36,9 @@ import { MatRadioModule } from '@angular/material/radio';
     HomePageComponent,
     NavbarComponent,
     FindAPlayerComponent,
-    AddAGameComponent
+    AddAGameComponent,
+    ProfilePageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +59,15 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRippleModule,
     MatStepperModule,
     MatRadioModule,
+    MatMenuModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: authInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
