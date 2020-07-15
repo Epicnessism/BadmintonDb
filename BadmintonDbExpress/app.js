@@ -18,16 +18,16 @@ var app = express();
 //         "http://localhost:4200"
 //     ], credentials: true
 // }));
-// app.use(cors({
-//     origin: [
-//         "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
-//     ], credentials: true
-// }));
 app.use(cors({
     origin: [
-        process.env.FRONT_END_CORS
+        "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
     ], credentials: true
 }));
+// app.use(cors({
+//     origin: [
+//         process.env.FRONT_END_CORS
+//     ], credentials: true
+// }));
 
 app.options('*', cors());
 
