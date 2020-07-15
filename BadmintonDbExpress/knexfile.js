@@ -1,5 +1,8 @@
 // Update with your config settings.
-if (process.env.NODE_ENV !== "test") require("dotenv").config();
+// if (process.env.NODE_ENV !== "test") require("dotenv").config();
+require("dotenv").config();
+console.dir(process.env);
+
 module.exports = {
   // // use this for local testing
   // development: {
@@ -12,10 +15,20 @@ module.exports = {
   //   },
   // },
 
+  // development: {
+  //   client: 'pg',
+  //   connection: {
+  //     host:`${process.env.PROD_DATABASE_URL}`,
+  //     user: 'postgres',
+  //     password: 'Test1234',
+  //     database: 'bst_db'
+  //   }
+  // },
+
   development: {
     client: 'pg',
     connection: {
-      host:`${process.env.PROD_DATABASE_URL}`,
+      host:`${process.env.DATABASE_URL}`,
       user: 'postgres',
       password: 'Test1234',
       database: 'bst_db'
@@ -41,9 +54,10 @@ module.exports = {
   production: {
     client: "postgresql",
     connection: {
-      database: "bst_db",
+      host:`${process.env.PROD_DATABASE_URL}`,
       user: "postgres",
       password: "Test1234",
+      database: "bst_db",
     },
     pool: {
       min: 2,

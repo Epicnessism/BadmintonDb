@@ -12,21 +12,23 @@ let cors = require('cors');
 
 var app = express();
 
-let env = 'development';
-let config = require('./knexfile.js')[env]
-knex = require('knex')(config)
-
 //* This is the cors magic shit here
 // app.use(cors({
 //     origin: [
 //         "http://localhost:4200"
 //     ], credentials: true
 // }));
+// app.use(cors({
+//     origin: [
+//         "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
+//     ], credentials: true
+// }));
 app.use(cors({
     origin: [
-        "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
+        process.env.FRONT_END_CORS
     ], credentials: true
 }));
+
 app.options('*', cors());
 
 //! more passport stuff
