@@ -46,7 +46,8 @@ export class authInterceptor implements HttpInterceptor {
           // Handle 401 error
           console.log("redirecting to login");
           this.router.navigate(['/','login']);
-        } else if( err.status == 404 && err.error.status == 'User not found.') {
+        // } else if( err.status == 404 && err.error.status == 'User not found.') {
+        } else if( err.status == 404) {
           //login mismatch
           console.log("login mismatch");
           return throwError(err);
