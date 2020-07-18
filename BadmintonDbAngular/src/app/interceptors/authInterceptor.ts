@@ -44,12 +44,14 @@ export class authInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       //? can I still access success events here?
       catchError((err: HttpErrorResponse) => {
+        console.log(err.status);
         if (err.status == 401) {
           // Handle 401 error
           console.log("redirecting to login");
           this.router.navigate(['/','login']);
         } else {
           console.log("other errors");
+          console.log(err);
           return throwError(err);
         }
       })
