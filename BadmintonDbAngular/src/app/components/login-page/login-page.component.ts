@@ -3,7 +3,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { SubscriptionService } from 'src/app/services/subscription.service';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
@@ -35,7 +37,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this.authService.login(this.loginFormGroup.value).subscribe( result => {
+    this.authService.login(this.loginFormGroup.value).pipe(
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        this.loginFormGroup.controls['username'].setValue('404 something returned failed')
+        return throwError(err);
+      }))
+    .subscribe( result => {
       console.log(result);
       console.log("successful login");
 

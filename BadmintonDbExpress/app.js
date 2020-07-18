@@ -13,7 +13,6 @@ let cors = require('cors');
 var app = express();
 
 //* This is the cors magic shit here
-// app.use(cors());
 // app.use(cors({
 //     origin: [
 //         "http://localhost:4200"
