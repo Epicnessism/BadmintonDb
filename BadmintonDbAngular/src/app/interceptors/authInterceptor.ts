@@ -44,7 +44,7 @@ export class authInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       //? can I still access success events here?
       catchError((err: HttpErrorResponse) => {
-        console.log(err.status);
+        console.log("error status?: ",err.status);
         if (err.status == 401) {
           // Handle 401 error
           console.log("redirecting to login");
