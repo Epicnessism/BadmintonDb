@@ -39,14 +39,17 @@ export class authInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //? can i still update the request headers and stuff here?
 
+    console.log(req);
+
     return next.handle(req).pipe(
       //? can I still access success events here?
-
       catchError((err: HttpErrorResponse) => {
         if (err.status == 401) {
           // Handle 401 error
+          console.log("redirecting to login");
           this.router.navigate(['/','login']);
         } else {
+          console.log("other errors");
           return throwError(err);
         }
       })

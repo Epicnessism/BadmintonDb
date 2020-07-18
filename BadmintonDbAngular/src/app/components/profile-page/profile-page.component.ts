@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -9,9 +10,14 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private subscriptionService: SubscriptionService
+    ) { }
 
   ngOnInit(): void {
+    this.subscriptionService.sendLoginRedirect('/profile');
     this.authService.authenticate().subscribe( result => {
       console.log('adfadsf: ',result.status);
     })
