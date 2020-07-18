@@ -13,17 +13,17 @@ let cors = require('cors');
 var app = express();
 
 //* This is the cors magic shit here
-app.use(cors());
+// app.use(cors());
 // app.use(cors({
 //     origin: [
 //         "http://localhost:4200"
 //     ], credentials: true
 // }));
-// app.use(cors({
-//     origin: [
-//         "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
-//     ], credentials: true
-// }));
+app.use(cors({
+    origin: [
+        "http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:4200"
+    ], credentials: true
+}));
 // app.use(cors({
 //     origin: [
 //         process.env.FRONT_END_CORS

@@ -15,25 +15,25 @@ module.exports = {
   //   },
   // },
 
-  // development: {
-  //   client: 'pg',
-  //   connection: {
-  //     host:`${process.env.PROD_DATABASE_URL}`,
-  //     user: 'postgres',
-  //     password: 'Test1234',
-  //     database: 'bst_db'
-  //   }
-  // },
-
   development: {
     client: 'pg',
     connection: {
-      host:`${process.env.DATABASE_URL}`,
+      host:`${process.env.PROD_DATABASE_URL}`,
       user: 'postgres',
       password: 'Test1234',
       database: 'bst_db'
     }
   },
+
+  // development: {
+  //   client: 'pg',
+  //   connection: {
+  //     host:`${process.env.DATABASE_URL}`,
+  //     user: 'postgres',
+  //     password: 'Test1234',
+  //     database: 'bst_db'
+  //   }
+  // },
 
   staging: {
     client: "postgresql",
