@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { GamesDataService } from 'src/app/services/games-data.service';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 
 @Component({
   selector: 'app-add-a-game',
@@ -25,9 +26,11 @@ export class AddAGameComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private gamesDataService: GamesDataService,
+    private subscriptionService: SubscriptionService
   ) { }
 
   ngOnInit(): void {
+    this.subscriptionService.sendLoginRedirect('addAGame');
     this.secondFormGroup = this._formBuilder.group({
       gameType: ['', Validators.required],
       player_1A: [undefined || '', Validators.required],

@@ -17,7 +17,7 @@ export class ProfilePageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.subscriptionService.sendLoginRedirect('/profile');
+    this.subscriptionService.sendLoginRedirect('profilePage');
     this.authService.authenticate().subscribe( result => {
       console.log('adfadsf: ',result.status);
     })

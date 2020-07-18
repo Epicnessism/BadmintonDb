@@ -14,7 +14,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
+  isLogin: boolean = true;
+
   loginFormGroup: FormGroup;
+  signUpFormGroup: FormGroup;
+
   subscription: Subscription;
   previousRoute: string = null;
   constructor(
@@ -23,6 +27,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private subscriptionService: SubscriptionService
   ) {
+    this.previousRoute = this.subscriptionService.getCurrentPreviousRoute();
     this.subscription = this.subscriptionService.getLoginRedirect().subscribe( originalRoute => {
       console.log(originalRoute.route);
       this.previousRoute = originalRoute.route;
@@ -33,6 +38,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.loginFormGroup = this._formBuilder.group({
       username: [undefined || '', Validators.required],
       password: [undefined || '', Validators.required]
+    });
+
+    this.signUpFormGroup = this._formBuilder.group({
+      username: [undefined || '', Validators.required],
+      password: [undefined || '', Validators.required],
+      confirmPassword: [undefined || '', Validators.required],
     });
   }
 
@@ -46,6 +57,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     .subscribe( result => {
       console.log(result);
       console.log("successful login");
+      console.log(this.previousRoute);
 
       if(this.previousRoute != null) {
         this.router.navigate([this.previousRoute]);
@@ -53,6 +65,26 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  toggleIsLogin(): void {
+    this.isLogin = !this.isLogin;
+  }
+
+  createAccount(): void {
+    //check if pwd inputs are the same
+    console.log(this.signUpFormGroup.value);
+    if(this.signUpFormGroup.controls['password'].value == this.signUpFormGroup.controls['confirmPassword'].value) {
+      this.authService.signUp(this.signUpFormGroup.value).subscribe(result => {
+        console.log(result);
+
+      })
+    } else {
+      console.log(this.signUpFormGroup.controls['password'].value);
+      console.log(this.signUpFormGroup.controls['confirmPassword'].value);
+      console.log("lol");
+
+    }
   }
 
   ngOnDestroy() {

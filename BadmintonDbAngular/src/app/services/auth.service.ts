@@ -24,4 +24,8 @@ export class AuthService {
     return this.http.get<any>(environment.backendURL + `auth/logout`, {withCredentials: true});
   }
 
+  signUp(body): Observable<any> {
+    return this.http.post<any>(environment.backendURL + `auth/register`, body, {withCredentials: true});
+  }
+
 }
