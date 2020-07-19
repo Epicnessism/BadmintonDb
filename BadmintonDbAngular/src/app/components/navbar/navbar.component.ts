@@ -1,6 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-navbar',
@@ -27,10 +28,14 @@ export class NavbarComponent {
 
   sideNavOptions = [{name:"Find a player", path: "findAPlayer"}, {name:"Add a game", path: "addAGame"}]
 
+
+  goTo(route) {
+    this.authService.routeTo(route);
+  }
+
   signOut(): void {
-    this.authService.signOut().subscribe(result => {
-      console.log(result);
-    })
+    // this.authService.routeTo()
+    this.authService.signOut();
   }
 
 }
