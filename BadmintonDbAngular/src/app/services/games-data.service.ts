@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,6 @@ import { Observable } from 'rxjs';
 export class GamesDataService {
 
   //Todo create environments for this so we dont have to switch this all the time and everywhere
-  // backendURL: String = 'http://localhost:3000/';
-  backendURL: String = 'http://ec2-3-132-178-65.us-east-2.compute.amazonaws.com:3000/';
 
   constructor(private http: HttpClient) { }
 
@@ -19,9 +18,19 @@ export class GamesDataService {
   // } //TODO resolve playerID vs playerName
 
   insertGame(gameBody): Observable<any> {
-    console.log(this.backendURL + `games`);
+    console.log(environment.backendURL + `games`);
     console.log(gameBody);
-    return this.http.post<any>(this.backendURL + `games`, gameBody, {withCredentials: true});
+    return this.http.post<any>(environment.backendURL + `games`, gameBody, {withCredentials: true});
+  }
+
+  getRecentGames(minutes = 60): Observable<any> {
+    console.log(environment.backendURL + `games/recent/${minutes}`);
+    return this.http.get<any>(environment.backendURL + `games/recent/${minutes}`, {withCredentials: true});
+  }
+
+  getGameBetween(newestMinutes = 0, oldestMinutes = 60): Observable<any> {
+    console.log(environment.backendURL + `games/recentBetween/${newestMinutes}/${oldestMinutes}`);
+    return this.http.get<any>(environment.backendURL + `games/recentBetween/${newestMinutes}/${oldestMinutes}`, {withCredentials: true});
   }
 
 }

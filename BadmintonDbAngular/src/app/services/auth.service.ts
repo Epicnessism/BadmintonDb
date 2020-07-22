@@ -29,7 +29,6 @@ export class AuthService {
   signOut() {
     this.http.get<any>(environment.backendURL + `auth/logout`, {withCredentials: true}).subscribe( result => {
       console.log(result);
-
       this.router.navigate(['']);
     })
   }

@@ -18,6 +18,11 @@ exports.up = function(knex) {
         table.integer('points_1').notNullable();
         table.integer('points_2').notNullable();
 
+        table.timestamp('manual_timestamp').defaultTo(knex.fn.now());
+
+        table.timestamps(true,true);
+
+
     })
   };
   

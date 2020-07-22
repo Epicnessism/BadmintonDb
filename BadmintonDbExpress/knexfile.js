@@ -1,10 +1,9 @@
 // Update with your config settings.
 // if (process.env.NODE_ENV !== "test") require("dotenv").config();
-require("dotenv").config();
-console.dir(process.env);
+// require("dotenv").config();
+// console.dir(process.env);
 
 module.exports = {
-  // // use this for local testing
   // development: {
   //   client: "pg",
   //   connection: {
