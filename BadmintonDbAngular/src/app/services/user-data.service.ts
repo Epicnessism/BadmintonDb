@@ -17,4 +17,9 @@ export class UserDataService {
     return this.http.get<any>(environment.backendURL + `players/${id}`, {withCredentials: true});
   } //TODO resulve playerID vs playerName
 
+  getPlayerNames(substring): Observable<any> {
+    console.log(environment.backendURL + `players/autoComplete/${substring}`);
+    return this.http.get<any>(environment.backendURL + `players/autoComplete/${substring}`, {withCredentials: true});
+  }
+
 }

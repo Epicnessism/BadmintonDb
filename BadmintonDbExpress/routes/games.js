@@ -26,11 +26,11 @@ games.get('/:id', authHelpers.loginRequired, function (req, res, next) {
 games.get('/recent/:minutes', authHelpers.loginRequired, function (req, res, next) {
     knex('games')
         .select(['*',
-        'p1a.given_name as p1a_given_name','p1a.family_name as p1a_family_name', 
-        'p1b.given_name as p1b_given_name', 'p1b.family_name as p1b_family_name',
-        'p2a.given_name as p2a_given_name', 'p2a.family_name as p2a_family_name',
-        'p2b.given_name as p2b_given_name', 'p2b.family_name as p2b_family_name',
-    ])
+            'p1a.given_name as p1a_given_name', 'p1a.family_name as p1a_family_name',
+            'p1b.given_name as p1b_given_name', 'p1b.family_name as p1b_family_name',
+            'p2a.given_name as p2a_given_name', 'p2a.family_name as p2a_family_name',
+            'p2b.given_name as p2b_given_name', 'p2b.family_name as p2b_family_name',
+        ])
         .from('games as g')
         .leftJoin('players as o', 'g.points_1', 'o.id')
         .leftJoin('players as p1a', 'g.player_id_1A', 'p1a.id')
@@ -48,6 +48,18 @@ games.get('/recent/:minutes', authHelpers.loginRequired, function (req, res, nex
 //get x minutes of games
 games.get('/recentBetween/:newest_minutes/:oldest_minutes', authHelpers.loginRequired, function (req, res, next) {
     knex('games')
+        .select(['*',
+            'p1a.given_name as p1a_given_name', 'p1a.family_name as p1a_family_name',
+            'p1b.given_name as p1b_given_name', 'p1b.family_name as p1b_family_name',
+            'p2a.given_name as p2a_given_name', 'p2a.family_name as p2a_family_name',
+            'p2b.given_name as p2b_given_name', 'p2b.family_name as p2b_family_name',
+        ])
+        .from('games as g')
+        .leftJoin('players as o', 'g.points_1', 'o.id')
+        .leftJoin('players as p1a', 'g.player_id_1A', 'p1a.id')
+        .leftJoin('players as p1b', 'g.player_id_1B', 'p1b.id')
+        .leftJoin('players as p2a', 'g.player_id_2A', 'p2a.id')
+        .leftJoin('players as p2b', 'g.player_id_2B', 'p2b.id')
         .whereBetween('updated_at', [moment().subtract(req.params.oldest_minutes, 'm'), moment().subtract(req.params.newest_minutes, 'm')])
         .orderBy('updated_at', 'desc')
         .then(result => {

@@ -27,6 +27,7 @@ import { AddAGameComponent } from './components/add-a-game/add-a-game.component'
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 
@@ -60,6 +61,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatStepperModule,
     MatRadioModule,
     MatMenuModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

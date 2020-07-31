@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { SubscriptionService } from 'src/app/services/subscription.service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-find-a-player',
@@ -9,6 +11,9 @@ import { SubscriptionService } from 'src/app/services/subscription.service';
   styleUrls: ['./find-a-player.component.sass']
 })
 export class FindAPlayerComponent implements OnInit {
+
+  players;
+  filteredPlayers: Observable<any>;
 
   playerIdFormControl = new FormControl('', [
     Validators.required,
@@ -29,6 +34,29 @@ export class FindAPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptionService.sendLoginRedirect('findAPlayer');
+    this.userDataService.getPlayerNames('all').subscribe( result => {
+      console.log(result);
+      this.players = result;
+      this.filteredPlayers = this.playerNameFormControl.valueChanges.pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.players.slice())
+      );
+    });
+
+  }
+
+  private _filter(value): string[] {
+    console.log(value);
+
+    const filterValue = value.toLowerCase();
+
+    return this.players.filter(option => option.given_name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  displayFn(player): string {
+    console.log(player);
+    return player && player.given_name ? `${player.given_name} ${player.family_name}` : '';
   }
 
   searchPlayerId() {

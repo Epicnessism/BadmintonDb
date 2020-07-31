@@ -6,7 +6,8 @@
       <mat-tab label="by Player ID">
         <mat-form-field appearance="outline" class="find-user-form">
           <mat-label>Player ID</mat-label>
-          <input matInput [formControl]="playerIdFormControl" placeholder="Ex. ABC123" (keydown.enter)="searchPlayerId()">
+          <input matInput [formControl]="playerIdFormControl" placeholder="Ex. ABC123"
+            (keydown.enter)="searchPlayerId()">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-error *ngIf="playerIdFormControl.hasError('minlength') && !playerIdFormControl.hasError('required')">
             PlayerID must be greater than 6 characters
@@ -17,17 +18,28 @@
         </mat-form-field>
       </mat-tab>
       <mat-tab label="by Name">
-        <mat-form-field appearance="outline" class="find-user-form">
-          <mat-label>Name</mat-label>
-          <input matInput [formControl]="playerIdFormControl" placeholder="Ex. ABC123" (keydown.enter)="searchPlayerName()">
-          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-          <mat-error *ngIf="playerIdFormControl.hasError('minlength') && !playerIdFormControl.hasError('required')">
-            PlayerID must be greater than 6 characters
-          </mat-error>
-          <mat-error *ngIf="playerIdFormControl.hasError('required')">
-            PlayerID is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
+
+
+        <form class="example-form" *ngIf="players">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input type="text" [formControl]="playerIdFormControl" placeholder="Enter Name Here"
+              (keydown.enter)="searchPlayerName()" matInput [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let player of filteredPlayers | async" [value]="player">
+                {{player.given_name}} {{player.family_name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="playerNameFormControl.hasError('minlength') && !playerNameFormControl.hasError('required')">
+              Player Name must be greater than 6 characters
+            </mat-error>
+            <mat-error *ngIf="playerNameFormControl.hasError('required')">
+              Player Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+
       </mat-tab>
       <mat-tab label="Under Construction"></mat-tab>
     </mat-tab-group>
