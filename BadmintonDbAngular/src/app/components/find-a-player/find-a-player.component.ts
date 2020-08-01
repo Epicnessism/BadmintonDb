@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+
+export interface User {
+  id: number;
+  given_name: string;
+  family_name: string;
+}
 
 @Component({
   selector: 'app-find-a-player',
@@ -12,29 +18,31 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class FindAPlayerComponent implements OnInit {
 
-  players;
-  filteredPlayers: Observable<any>;
+  players: User[] = [
+    { id: 1, given_name: 'aaa', family_name: 'dddd' },
+    { id: 2, given_name: 'ggg', family_name: 'walzer' },
+    { id: 3, given_name: 'bbadf', family_name: 'xu' },
+  ]
+  filteredPlayers: Observable<User[]>;
 
   playerIdFormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(6), //TODO not used atm...bring back when implementing playerID
   ]);
 
-  playerNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6),
-  ]);
+  playerNameFormControl = new FormControl('', []);
 
   playerInfo = null; //TODO create player Object Model
 
   constructor(
     private userDataService: UserDataService,
-    private subscriptionService: SubscriptionService
+    private subscriptionService: SubscriptionService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.subscriptionService.sendLoginRedirect('findAPlayer');
-    this.userDataService.getPlayerNames('all').subscribe( result => {
+    this.userDataService.getPlayerNames('all').subscribe(result => {
       console.log(result);
       this.players = result;
       this.filteredPlayers = this.playerNameFormControl.valueChanges.pipe(
@@ -44,9 +52,10 @@ export class FindAPlayerComponent implements OnInit {
       );
     });
 
+
   }
 
-  private _filter(value): string[] {
+  private _filter(value: string): User[] {
     console.log(value);
 
     const filterValue = value.toLowerCase();
@@ -54,7 +63,7 @@ export class FindAPlayerComponent implements OnInit {
     return this.players.filter(option => option.given_name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  displayFn(player): string {
+  displayFn(player: User): string {
     console.log(player);
     return player && player.given_name ? `${player.given_name} ${player.family_name}` : '';
   }
@@ -69,8 +78,10 @@ export class FindAPlayerComponent implements OnInit {
   }
 
   searchPlayerName() {
+    console.log(this.playerNameFormControl.value.id);
+
     if (!this.playerNameFormControl.hasError('minlength') && !this.playerNameFormControl.hasError('required')) {
-      this.userDataService.getPlayerStats(this.playerNameFormControl.value).subscribe(result => {
+      this.userDataService.getPlayerStats(this.playerNameFormControl.value.id).subscribe(result => {
         console.log(result);
         this.playerInfo = result;
       });
