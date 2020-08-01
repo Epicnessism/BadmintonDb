@@ -25,7 +25,7 @@
           <mat-form-field class="find-user-form" appearance="outline">
             <mat-label>Assignee</mat-label>
             <input type="text" matInput [formControl]="playerNameFormControl" [matAutocomplete]="auto" (keydown.enter)="searchPlayerName()">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let option of filteredPlayers | async" [value]="option" (click)="searchPlayerName()">
                 {{option.given_name}} {{option.family_name}}
               </mat-option>
