@@ -5,6 +5,7 @@ import { FindAPlayerComponent } from './components/find-a-player/find-a-player.c
 import { AddAGameComponent } from './components/add-a-game/add-a-game.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'addAGame', component: AddAGameComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'profilePage', component: ProfilePageComponent},
+  {path: 'notifications', component: NotificationsComponent},
 ];
 
 @NgModule({

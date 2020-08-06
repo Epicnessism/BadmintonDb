@@ -30,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 
@@ -41,7 +42,8 @@ import { MatDividerModule } from '@angular/material/divider';
     FindAPlayerComponent,
     AddAGameComponent,
     ProfilePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

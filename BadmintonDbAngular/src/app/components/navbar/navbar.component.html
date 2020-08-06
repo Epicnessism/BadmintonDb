@@ -11,16 +11,17 @@
       </div>
 
       <span class="example-spacer"></span>
-      <button mat-icon-button routerLink="addAGame" aria-hidden="false" aria-label="Settings Icon">
+      <button mat-icon-button routerLink="addAGame" aria-hidden="false" aria-label="Add A Game Icon">
         <mat-icon>add</mat-icon>
       </button>
       <button mat-icon-button aria-hidden="false" aria-label="My Profile Page Button" (click)="goTo('profilePage')">
-        <mat-icon>perm_identity</mat-icon>
+        <mat-icon>account_box</mat-icon>
       </button>
-      <!-- <button mat-icon-button aria-hidden="false" aria-label="Settings Icon">
-        <mat-icon>settings</mat-icon>
-      </button> -->
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+
+      <button mat-icon-button aria-hidden="false" aria-label="Notifcations Icon" (click)="goTo('notifications')">
+        <mat-icon>message</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Hamburger Dropdown Settings Icon ">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
