@@ -28,6 +28,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -61,7 +63,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatStepperModule,
     MatRadioModule,
     MatMenuModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatDividerModule
   ],
   providers: [
     {

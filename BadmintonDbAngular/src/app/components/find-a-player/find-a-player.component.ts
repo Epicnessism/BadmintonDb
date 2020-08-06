@@ -4,6 +4,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 
 export interface User {
   id: number;
@@ -17,6 +18,9 @@ export interface User {
   styleUrls: ['./find-a-player.component.sass']
 })
 export class FindAPlayerComponent implements OnInit {
+
+  mode: ProgressSpinnerMode = 'indeterminate';
+  searchingInProgress: boolean = false;
 
   players: User[] = [
     { id: 1, given_name: 'aaa', family_name: 'dddd' },
@@ -69,21 +73,25 @@ export class FindAPlayerComponent implements OnInit {
   }
 
   searchPlayerId() {
+    console.log(this.searchingInProgress);
     if (!this.playerIdFormControl.hasError('required')) {
       this.userDataService.getPlayerStats(this.playerIdFormControl.value).subscribe(result => {
         console.log(result);
         this.playerInfo = result;
+
       });
     }
   }
 
   searchPlayerName() {
+    this.searchingInProgress = true;
     console.log(this.playerNameFormControl.value.id);
 
     if (!this.playerNameFormControl.hasError('minlength') && !this.playerNameFormControl.hasError('required')) {
       this.userDataService.getPlayerStats(this.playerNameFormControl.value.id).subscribe(result => {
         console.log(result);
         this.playerInfo = result;
+        this.searchingInProgress = false;
       });
     }
   }

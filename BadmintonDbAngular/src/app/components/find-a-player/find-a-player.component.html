@@ -3,8 +3,24 @@
   <mat-card class="main-card">
     <h2>Find A Player</h2>
     <mat-tab-group mat-stretch-tabs color="accent" backgroundColor="primary">
+
+      <mat-tab label="by Name">
+
+        <mat-form-field class="find-user-forms" appearance="outline" *ngIf="players">
+          <mat-label>Player Name</mat-label>
+          <input type="text" matInput [formControl]="playerNameFormControl" [matAutocomplete]="auto"
+            (keydown.enter)="searchPlayerName()">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredPlayers | async" [value]="option" (click)="searchPlayerName()">
+              {{option.given_name}} {{option.family_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+      </mat-tab>
+
       <mat-tab label="by Player ID">
-        <mat-form-field appearance="outline" class="find-user-form">
+        <mat-form-field appearance="outline" class="find-user-forms">
           <mat-label>Player ID</mat-label>
           <input matInput [formControl]="playerIdFormControl" placeholder="Ex. ABC123"
             (keydown.enter)="searchPlayerId()">
@@ -17,56 +33,41 @@
           </mat-error>
         </mat-form-field>
       </mat-tab>
-      <mat-tab label="by Name">
 
-
-        <form class="example-form" *ngIf="players">
-
-          <mat-form-field class="find-user-form" appearance="outline">
-            <mat-label>Assignee</mat-label>
-            <input type="text" matInput [formControl]="playerNameFormControl" [matAutocomplete]="auto" (keydown.enter)="searchPlayerName()">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let option of filteredPlayers | async" [value]="option" (click)="searchPlayerName()">
-                {{option.given_name}} {{option.family_name}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-
-          <!-- <mat-form-field class="example-full-width">
-            <mat-label>Name</mat-label>
-            <input type="text" [formControl]="playerIdFormControl"
-              (keydown.enter)="searchPlayerName()" matInput [matAutocomplete]="auto">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let player of filteredPlayers | async" [value]="player">
-                {{player.given_name}} {{player.family_name}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field> -->
-        </form>
-
-      </mat-tab>
       <mat-tab label="Under Construction"></mat-tab>
     </mat-tab-group>
 
-    <mat-card class="player-info-card" *ngIf="playerInfo != null">
-      <mat-card-header>
-        <div mat-card-avatar class="header-image"></div>
-        <mat-card-title></mat-card-title>
-        <mat-card-subtitle>{{playerInfo.given_name}} {{playerInfo.family_name}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{playerInfo.level}}
-          {{playerInfo.hand}}
-          {{playerInfo.location}}
-          {{playerInfo.institution}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
+    <!-- END OF TABS -->
+
+    <mat-progress-spinner class="example-margin" color="primary" [mode]="mode" *ngIf="searchingInProgress">
+    </mat-progress-spinner>
+
+
+    <!-- END OF LOADING SPINNER -->
+
+    <div *ngIf="playerInfo != null" class="player-info-div">
+      <mat-divider></mat-divider>
+      <mat-card class="player-info-card">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title></mat-card-title>
+          <mat-card-subtitle>{{playerInfo.given_name}} {{playerInfo.family_name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{playerInfo.level}}
+            {{playerInfo.hand}}
+            {{playerInfo.location}}
+            {{playerInfo.institution}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
   </mat-card>
 
 </div>
