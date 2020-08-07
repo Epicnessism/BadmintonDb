@@ -16,7 +16,8 @@ function createUser (req) {
     return knex('users').where({username: req.body.username})
     .insert({
         username: req.body.username,
-        password: hash
+        password: hash,
+        player_id: req.body.player_id
     })
     .returning('*');
 }
