@@ -31,7 +31,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -67,7 +67,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     MatMenuModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatBadgeModule
   ],
   providers: [
     {

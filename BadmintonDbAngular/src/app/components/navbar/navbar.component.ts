@@ -2,6 +2,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ThrowStmt } from '@angular/compiler';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +12,21 @@ import { ThrowStmt } from '@angular/compiler';
 export class NavbarComponent {
   mobileQuery: MediaQueryList;
 
+
+  numNotifications: number = null;
+
   ngOnInit(): void {
+    this.getNotifications();
   }
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private authService: AuthService) {
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher,
+    private authService: AuthService,
+    private notificationsService: NotificationsService
+    ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -36,6 +46,13 @@ export class NavbarComponent {
   signOut(): void {
     // this.authService.routeTo()
     this.authService.signOut();
+  }
+
+  getNotifications() {
+    this.notificationsService.getActiveNotifications().subscribe( result => {
+      console.log(result.length);
+      this.numNotifications = result.length;
+    })
   }
 
 }

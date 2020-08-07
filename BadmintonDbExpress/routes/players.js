@@ -49,4 +49,15 @@ players.post('/:id', authHelpers.loginRequired , function(req, res, next) {
     res.status(201).json({'post': req.params.id});
 })
 
+players.get('/notifications/active', authHelpers.loginRequired, function(req, res, next) {
+    console.log(req.user.player_id);
+    knex('game_notifications')
+    .where({player_id: req.user.player_id})
+    .then( result => {
+        console.log(result);
+        res.status(200).json(result);
+    })
+    
+})
+
 module.exports.players = players;
