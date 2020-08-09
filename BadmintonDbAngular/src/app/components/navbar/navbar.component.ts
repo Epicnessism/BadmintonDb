@@ -55,4 +55,10 @@ export class NavbarComponent {
     })
   }
 
+  goNotifications() {
+    this.numNotifications = null;
+    this.goTo('notifications');
+  }
+
+
 }
