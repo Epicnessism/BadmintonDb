@@ -31,6 +31,16 @@ app.use(cors({
 
 app.options('*', cors());
 
+//! prod mode/stuff and proxy/prod stuff?
+const isDevMode = process.env.NODE_ENV === 'development'; //? wtf does this do if not === to development??
+console.log(process.env.NODE_ENV);
+// 1st change.
+if (!isDevMode) {
+  app.set('trust proxy', 1);
+}
+
+
+//? added sameSite: true, and secure: !isDevMode for prod/proxy stuff
 //! more passport stuff
 app.use( session({
     secret: process.env.SESSION_SECRET,
@@ -38,7 +48,9 @@ app.use( session({
     saveUnintialized: false,
     cookie: {
         expires: 10800000, //3 hours
-        httpOnly: false
+        httpOnly: false,
+        sameSite: true,
+        secure: !isDevMode,
     }
 }));
 
