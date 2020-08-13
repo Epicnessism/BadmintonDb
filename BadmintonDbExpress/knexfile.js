@@ -17,12 +17,22 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host:`${process.env.PROD_DATABASE_URL}`,
+      host:`bst-database-2.cwprynonbh7c.us-east-2.rds.amazonaws.com`,
       user: 'postgres',
       password: 'Test1234',
       database: 'bst_db'
     }
   },
+
+  // development: {
+  //   client: 'pg',
+  //   connection: {
+  //     host:`${process.env.PROD_DATABASE_URL}`,
+  //     user: 'postgres',
+  //     password: 'Test1234',
+  //     database: 'bst_db'
+  //   }
+  // },
 
   // development: {
   //   client: 'pg',

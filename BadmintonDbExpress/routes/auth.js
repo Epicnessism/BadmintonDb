@@ -60,6 +60,7 @@ auth.get('/logout', authHelpers.loginRequired ,(req, res, next) => {
 });
 
 auth.get('/authenticate', authHelpers.loginRequired, (req, res, next) => {
+    console.log('got inside /authenticate');
     handleResponse(res, 200, 'authenticated');
 });
 

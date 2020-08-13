@@ -10,7 +10,7 @@ function comparePass(userPassword, databasePassword) {
 }
 
 function createUser (req) {
-    console.log("got here");
+    console.log("got inside create user");
     const salt = bcrypt.genSaltSync();
     const hash = bcrypt.hashSync(req.body.password, salt);
     return knex('users').where({username: req.body.username})
@@ -23,7 +23,7 @@ function createUser (req) {
 }
 
 function loginRequired(req, res, next) {
-    console.log(req.user);
+    console.log("req.user -> :  ",req.user);
     if (!req.user) return res.status(401).json({status: 'Please log in'});
     return next();
 }

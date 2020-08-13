@@ -9,31 +9,32 @@
       </mat-card-header>
       <mat-card-content class="">
         <div class="container">
-          <div class="rightBorderDivider" *ngIf="!game.p1b_given_name; else doubles">
-            Singles
+          <ng-container *ngIf="!game.p1b_given_name; else doubles">
+            <div class="rightBorderDivider">
+              <p class="names">
+                {{game.p1a_given_name}} {{game.p1a_family_name}}
+              </p>
+            </div>
+            <div *ngIf="!game.p1b_given_name; else doubles">
+              <p class="names">
+                {{game.p2a_given_name}} {{game.p2a_family_name}}
+              </p>
+            </div>
+          </ng-container>
+        </div>
+        <!-- end singles content -->
+        <ng-template #doubles>
+          <div class="rightBorderDivider">
+
             <p class="names">
-              {{game.p1a_given_name}} {{game.p1a_family_name}}
+              {{game.p1a_given_name}} {{game.p1a_family_name}} / {{game.p1b_given_name}} {{game.p1b_family_name}}
             </p>
           </div>
           <div>
             <p class="names">
-              {{game.p2a_given_name}} {{game.p2a_family_name}}
+              {{game.p2a_given_name}} {{game.p2a_family_name}} / {{game.p2b_given_name}} {{game.p2b_family_name}}
             </p>
           </div>
-        </div>
-        <!-- end singles content -->
-        <ng-template #doubles>
-            <div class="rightBorderDivider">
-              Doubles
-              <p class="names">
-                {{game.p1a_given_name}} {{game.p1a_family_name}} / {{game.p1b_given_name}} {{game.p1b_family_name}}
-              </p>
-            </div>
-            <div>
-              <p class="names">
-                {{game.p2a_given_name}} {{game.p2a_family_name}} / {{game.p2b_given_name}} {{game.p2b_family_name}}
-              </p>
-            </div>
         </ng-template>
 
       </mat-card-content>
